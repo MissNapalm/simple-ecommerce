@@ -154,14 +154,12 @@ main {
 
 .product {
     background-color: #ffffff;
-    border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px 16px;
     text-align: center;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    box-shadow: 4px 4px 0px #333;
 }
 
 .product-emoji {
@@ -253,4 +251,11 @@ footer {
         opacity: 0.3;
         width: 100%;
     }
+
+    .product-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 4px;
+}
 }

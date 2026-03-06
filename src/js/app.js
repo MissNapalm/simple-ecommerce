@@ -21,7 +21,10 @@ function displayProducts(products) {
         const productElement = document.createElement('div');
         productElement.classList.add('product');
         productElement.innerHTML = `
-            <div class="product-emoji">${product.emoji}</div>
+            ${product.image 
+        ? `<img class="product-image" src="${product.image}" alt="${product.name}">` 
+        : `<div class="product-emoji">${product.emoji}</div>`
+}
             <h3>${product.name}</h3>
             <p>$${product.price.toFixed(2)}</p>
             <button onclick="addToCart(${product.id})">Add to Cart</button>
