@@ -6,10 +6,22 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0fff0;
+    background-color: #ffffff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+/* ── Announcement Bar ── */
+#announcement-bar {
+    background-color: #5c5c5c;
+    color: #fafafa;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.1em;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
 /* ── Top Bar ── */
@@ -23,10 +35,8 @@ body {
 }
 
 #logo {
-    color: #2979ff;
-    font-size: 1.6em;
-    font-weight: bold;
-    white-space: nowrap;
+    height: 60px;
+    width: auto;
 }
 
 #search {
@@ -67,10 +77,32 @@ body {
 
 /* ── Hero ── */
 #hero {
-    background: linear-gradient(135deg, #111 60%, #2979ff);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    height: 400px;
+    padding: 0 60px;
+    background: #111;
     color: white;
-    padding: 80px 30px;
-    text-align: center;
+}
+
+#hero-image {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 60%;
+    object-fit: cover;
+    object-position: center;
+    mask-image: linear-gradient(to right, transparent 0%, black 40%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%);
+}
+
+#hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
 }
 
 #hero-content h1 {
@@ -215,5 +247,10 @@ footer {
 
     #top-bar {
         flex-wrap: wrap;
+    }
+
+    #hero-image {
+        opacity: 0.3;
+        width: 100%;
     }
 }
