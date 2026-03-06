@@ -47,6 +47,7 @@ body {
     border: none;
     font-size: 1em;
     outline: none;
+    margin: 0 auto 0 calc(50% - 500px);
 }
 
 #top-bar-right a {
@@ -154,6 +155,7 @@ main {
 
 .product {
     background-color: #ffffff;
+    border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px 16px;
     text-align: center;
