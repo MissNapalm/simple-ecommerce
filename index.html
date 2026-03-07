@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShopCenter</title>
@@ -12,23 +12,50 @@
     <!-- Top bar -->
     <div id="top-bar">
         <img id="logo" src="logo.avif" alt="ShopCenter">
+
+        <div id="deliver-to">
+            <span>Delivering to</span>
+            <span>📍 Los Angeles 90001</span>
+        </div>
+
         <div id="search-wrapper">
             <input type="text" id="search" placeholder="Search for products...">
-            <button id="hi-world-btn">Go</button>
+            <button id="hi-world-btn">🔍</button>
         </div>
+
         <div id="top-bar-right">
-            <a href="cart.html">🛒 Cart</a>
+            <a href="#" class="lang-link">EN</a>
+
+            <a href="#" class="top-link">
+                <span>Hello, sign in</span>
+                <span>Account &amp; Lists</span>
+            </a>
+
+            <a href="#" class="top-link">
+                <span>Returns</span>
+                <span>&amp; Orders</span>
+            </a>
+
+            <a href="cart.html" class="cart-link">
+                <span class="cart-count">0</span>
+                🛒 Cart
+            </a>
         </div>
     </div>
 
     <!-- Navbar -->
     <nav id="navbar">
-        <a href="index.html">Home</a>
-        <a href="#">About</a>
-        <a href="#">Deals</a>
-        <a href="#">Categories</a>
-        <a href="#">Support</a>
-        <a href="cart.html">Cart</a>
+        <a href="#">All</a>
+        <a href="#">Amazon Basics</a>
+        <a href="#">Best Sellers</a>
+        <a href="#">Books</a>
+        <a href="#">Prime</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">Registry</a>
+        <a href="#">Smart Home</a>
+        <a href="#">Groceries</a>
+        <a href="#">New Releases</a>
+        <a href="#">Today's Deals</a>
     </nav>
 
     <!-- Hero -->
