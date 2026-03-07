@@ -364,7 +364,7 @@ function showDemoNotice() {
     clearTimeout(notice._timeout);
     notice._timeout = setTimeout(() => {
         dismissNotice(notice);
-    }, 2000);
+    }, 4300);
 }
 
 function setupDeadLinks() {
