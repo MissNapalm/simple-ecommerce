@@ -3,7 +3,36 @@ let totalPrice = 0;
 
 function init() {
     loadProducts();
-    setupEventListeners();
+    setupDrawer();
+}
+
+function setupDrawer() {
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const drawer = document.getElementById('drawer');
+    const drawerOverlay = document.getElementById('drawer-overlay');
+    const drawerClose = document.getElementById('drawer-close');
+
+    if (hamburgerBtn && drawer && drawerOverlay) {
+        hamburgerBtn.addEventListener('click', () => {
+            drawer.classList.add('open');
+            drawerOverlay.classList.add('active');
+        });
+    }
+
+    function closeDrawer() {
+        if (drawer && drawerOverlay) {
+            drawer.classList.remove('open');
+            drawerOverlay.classList.remove('active');
+        }
+    }
+
+    if (drawerClose) {
+        drawerClose.addEventListener('click', closeDrawer);
+    }
+
+    if (drawerOverlay) {
+        drawerOverlay.addEventListener('click', closeDrawer);
+    }
 }
 
 function loadProducts() {
@@ -17,6 +46,7 @@ function loadProducts() {
 
 function displayProducts(products) {
     const productContainer = document.getElementById('product-list');
+    if (!productContainer) return;
     products.forEach(product => {
         const productElement = document.createElement('div');
         productElement.classList.add('product');
@@ -45,12 +75,6 @@ function addToCart(productId) {
             }
         })
         .catch(error => console.error('Error adding to cart:', error));
-}
-
-function setupEventListeners() {
-    document.getElementById('view-cart').addEventListener('click', () => {
-        window.location.href = 'cart.html';
-    });
 }
 
 window.onload = init;
