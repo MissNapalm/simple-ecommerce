@@ -9,6 +9,12 @@
 </head>
 <body>
 
+    <!-- Demo Notice -->
+    <div id="demo-notice">
+        <p>🛍️ Frontend demo only! Try adding and removing items to the cart.</p>
+        <button id="demo-notice-close">&times;</button>
+    </div>
+
     <!-- Drawer Overlay -->
     <div id="drawer-overlay"></div>
 
@@ -74,6 +80,26 @@
         </div>
     </div>
 
+    <!-- Cart Drawer Overlay -->
+    <div id="cart-overlay"></div>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer">
+        <div id="cart-drawer-header">
+            <span>🛒 Your Cart</span>
+            <button id="cart-drawer-close">&times;</button>
+        </div>
+        <div id="cart-drawer-items"></div>
+        <div id="cart-drawer-footer">
+            <div id="cart-drawer-total">
+                <span>Subtotal:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button id="cart-checkout-btn">Proceed to Checkout</button>
+            <p id="cart-empty-msg">Your cart is empty.</p>
+        </div>
+    </div>
+
     <!-- Top bar -->
     <div id="top-bar">
         <img id="logo" src="logo.avif" alt="ShopCenter">
@@ -101,39 +127,174 @@
                 <span>&amp; Orders</span>
             </a>
 
-            <a href="cart.html" class="cart-link">
+            <button id="cart-btn" class="cart-link">
                 <span class="cart-count">0</span>
                 🛒 Cart
-            </a>
+            </button>
         </div>
     </div>
 
     <!-- Navbar -->
     <nav id="navbar">
-        <button id="hamburger-btn">&#9776;</button>
-        <a href="#">All</a>
-        <a href="#">Best Sellers</a>
-        <a href="#">Books</a>
-        <a href="#">Prime</a>
-        <a href="#">Gift Cards</a>
-        <a href="#">Registry</a>
-        <a href="#">Smart Home</a>
-        <a href="#">Groceries</a>
-        <a href="#">New Releases</a>
-        <a href="#">Today's Deals</a>
-        <a href="#">Electronics</a>
-        <a href="#">Fashion</a>
-        <a href="#">Pet Supplies</a>
+        <button id="hamburger-btn">
+            <span class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+
+        <div class="nav-dropdown">
+            <a href="#">All</a>
+            <div class="nav-dropdown-menu">
+                <a href="#">All Departments</a>
+                <a href="#">All Deals</a>
+                <a href="#">All Brands</a>
+                <a href="#">All Categories</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#">Best Sellers</a>
+            <div class="nav-dropdown-menu">
+                <a href="#">Top 100 in Electronics</a>
+                <a href="#">Top 100 in Books</a>
+                <a href="#">Top 100 in Home</a>
+                <a href="#">Top 100 in Fashion</a>
+                <a href="#">Top 100 in Toys</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#">Books</a>
+            <div class="nav-dropdown-menu">
+                <a href="#">Fiction</a>
+                <a href="#">Non-Fiction</a>
+                <a href="#">Children's Books</a>
+                <a href="#">Textbooks</a>
+                <a href="#">Audiobooks</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#">Premium</a>
+            <div class="nav-dropdown-menu">
+                <a href="#">Premium Video</a>
+                <a href="#">Premium Music</a>
+                <a href="#">Premium Gaming</a>
+                <a href="#">Premium Reading</a>
+                <a href="#">Try Before You Buy</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#">Gift Cards</a>
+            <div class="nav-dropdown-menu">
+                <a href="#">eGift Cards</a>
+                <a href="#">Print at Home</a>
+                <a href="#">Mail a Gift Card</a>
+                <a href="#">Gift Card Balance</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#">Registry</a>
+            <div class="nav-dropdown-menu">
+                <a href="#">Wedding Registry</a>
+                <a href="#">Baby Registry</a>
+                <a href="#">Birthday Registry</a>
+                <a href="#">Find a Registry</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#">Smart Home</a>
+            <div class="nav-dropdown-menu">
+                <a href="#">Smart Speakers</a>
+                <a href="#">Smart Displays</a>
+                <a href="#">Smart Lighting</a>
+                <a href="#">Smart Plugs</a>
+                <a href="#">Security Cameras</a>
+                <a href="#">Thermostats</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#">Groceries</a>
+            <div class="nav-dropdown-menu">
+                <a href="#">Snacks & Candy</a>
+                <a href="#">Beverages</a>
+                <a href="#">Breakfast Foods</a>
+                <a href="#">Canned & Packaged</a>
+                <a href="#">Organic</a>
+                <a href="#">Fresh Produce</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#">New Releases</a>
+            <div class="nav-dropdown-menu">
+                <a href="#">Last 30 Days</a>
+                <a href="#">Last 90 Days</a>
+                <a href="#">Coming Soon</a>
+                <a href="#">Most Wished For</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#">Today's Deals</a>
+            <div class="nav-dropdown-menu">
+                <a href="#">Lightning Deals</a>
+                <a href="#">Deal of the Day</a>
+                <a href="#">Savings & Sales</a>
+                <a href="#">Coupons</a>
+                <a href="#">Outlet</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#">Electronics</a>
+            <div class="nav-dropdown-menu">
+                <a href="#">Laptops & Computers</a>
+                <a href="#">Headphones</a>
+                <a href="#">Smartphones</a>
+                <a href="#">Tablets</a>
+                <a href="#">Wearable Tech</a>
+                <a href="#">Cameras</a>
+                <a href="#">Accessories</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#">Pet Supplies</a>
+            <div class="nav-dropdown-menu">
+                <a href="#">Dog Food</a>
+                <a href="#">Cat Food</a>
+                <a href="#">Pet Toys</a>
+                <a href="#">Pet Beds</a>
+                <a href="#">Grooming</a>
+                <a href="#">Fish & Aquatics</a>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero -->
     <div id="hero">
         <div id="hero-content">
-            <h1>Next-Gen Tech,<br>Today's Prices.</h1>
-            <p>Phones, laptops, accessories and more — all in one place.</p>
+            <h1 id="hero-title">Next-Gen Tech,<br>Today's Prices.</h1>
+            <p id="hero-subtitle">Phones, laptops, accessories and more — all in one place.</p>
             <button id="hero-btn">Shop Now</button>
         </div>
-        <img id="hero-image" src="shopper.webp" alt="">
+        <video id="hero-video" src="shop1.mp4" autoplay muted playsinline></video>
+
+        <button id="hero-prev">&#8249;</button>
+        <button id="hero-next">&#8250;</button>
+
+        <div id="hero-dots">
+            <span class="hero-dot active"></span>
+            <span class="hero-dot"></span>
+            <span class="hero-dot"></span>
+        </div>
     </div>
 
     <!-- Products -->
