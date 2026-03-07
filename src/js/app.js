@@ -267,21 +267,42 @@ function setupHeroCarousel() {
         }, 4500);
     }
 
-    function goToSlide(index) {
+    function goToSlide(index, direction) {
         clearInterval(videoSwapInterval);
+
+        if (!direction) {
+            direction = index > currentSlide ? 'right' : 'left';
+        }
+
         currentSlide = (index + heroSlides.length) % heroSlides.length;
         currentVideo = 0;
         const slide = heroSlides[currentSlide];
 
-        content.classList.add('fade-out');
+        content.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        content.style.opacity = '0';
+        content.style.transform = direction === 'right' ? 'translateX(-300px)' : 'translateX(300px)';
+
         swapVideo(slide.videos[0]);
 
         setTimeout(() => {
             title.innerHTML = slide.title;
             subtitle.textContent = slide.subtitle;
             if (btn) btn.textContent = slide.btn;
-            content.classList.remove('fade-out');
-        }, 400);
+
+            content.style.transition = 'none';
+            content.style.transform = direction === 'right' ? 'translateX(600px)' : 'translateX(-600px)';
+            void content.offsetHeight;
+
+            content.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            content.style.opacity = '1';
+            content.style.transform = 'translateX(0)';
+
+            setTimeout(() => {
+                content.style.opacity = '';
+                content.style.transform = '';
+                content.style.transition = '';
+            }, 550);
+        }, 300);
 
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === currentSlide);
@@ -289,18 +310,18 @@ function setupHeroCarousel() {
 
         setTimeout(() => {
             startVideoSwap();
-        }, 500);
+        }, 900);
     }
 
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            goToSlide(currentSlide - 1);
+            goToSlide(currentSlide - 1, 'left');
         });
     }
 
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            goToSlide(currentSlide + 1);
+            goToSlide(currentSlide + 1, 'right');
         });
     }
 
