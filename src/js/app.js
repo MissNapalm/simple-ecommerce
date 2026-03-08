@@ -37,6 +37,7 @@ function init() {
     setupDeadLinks();
     trimNavbar();
     setupHeroCarousel();
+    setupNavbarDrag();
 }
 
 function setupDrawer() {
@@ -244,6 +245,10 @@ function setupHeroCarousel() {
 
     currentVideo = 0;
 
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+
     function swapVideo(src) {
         video.style.opacity = '0';
         setTimeout(() => {
@@ -274,13 +279,17 @@ function setupHeroCarousel() {
             direction = index > currentSlide ? 'right' : 'left';
         }
 
+        var mobile = isMobile();
+        var exitDistance = mobile ? 150 : 300;
+        var enterDistance = mobile ? 300 : 600;
+
         currentSlide = (index + heroSlides.length) % heroSlides.length;
         currentVideo = 0;
         const slide = heroSlides[currentSlide];
 
         content.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
         content.style.opacity = '0';
-        content.style.transform = direction === 'right' ? 'translateX(-300px)' : 'translateX(300px)';
+        content.style.transform = direction === 'right' ? 'translateX(-' + exitDistance + 'px)' : 'translateX(' + exitDistance + 'px)';
 
         swapVideo(slide.videos[0]);
 
@@ -290,7 +299,7 @@ function setupHeroCarousel() {
             if (btn) btn.textContent = slide.btn;
 
             content.style.transition = 'none';
-            content.style.transform = direction === 'right' ? 'translateX(600px)' : 'translateX(-600px)';
+            content.style.transform = direction === 'right' ? 'translateX(' + enterDistance + 'px)' : 'translateX(-' + enterDistance + 'px)';
             void content.offsetHeight;
 
             content.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -431,6 +440,51 @@ function trimNavbar() {
 
     hideOverflow();
     window.addEventListener('resize', hideOverflow);
+}
+
+function setupNavbarDrag() {
+    var navbar = document.getElementById('navbar');
+    if (!navbar) return;
+
+    var isDown = false;
+    var startX;
+    var scrollLeft;
+
+    navbar.addEventListener('mousedown', function(e) {
+        isDown = true;
+        navbar.style.cursor = 'grabbing';
+        startX = e.pageX - navbar.offsetLeft;
+        scrollLeft = navbar.scrollLeft;
+    });
+
+    navbar.addEventListener('mouseleave', function() {
+        isDown = false;
+        navbar.style.cursor = 'grab';
+    });
+
+    navbar.addEventListener('mouseup', function() {
+        isDown = false;
+        navbar.style.cursor = 'grab';
+    });
+
+    navbar.addEventListener('mousemove', function(e) {
+        if (!isDown) return;
+        e.preventDefault();
+        var x = e.pageX - navbar.offsetLeft;
+        var walk = (x - startX) * 2;
+        navbar.scrollLeft = scrollLeft - walk;
+    });
+
+    navbar.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].pageX - navbar.offsetLeft;
+        scrollLeft = navbar.scrollLeft;
+    }, { passive: true });
+
+    navbar.addEventListener('touchmove', function(e) {
+        var x = e.touches[0].pageX - navbar.offsetLeft;
+        var walk = (x - startX) * 2;
+        navbar.scrollLeft = scrollLeft - walk;
+    }, { passive: true });
 }
 
 window.onload = init;
