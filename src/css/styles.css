@@ -222,7 +222,7 @@ body {
     flex-direction: column;
     white-space: nowrap;
     cursor: pointer;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 400;
 }
 
@@ -230,8 +230,8 @@ body {
     color: #fff;
     font-weight: 500;
     font-size: 1.2em;
-    font-family: 'Quicksand', sans-serif;
-    letter-spacing: 0.5px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.3px;
 }
 
 #top-bar-right .lang-link {
@@ -907,13 +907,13 @@ footer {
     border: none;
     color: #fff;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: 500;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 4px;
-    font-family: 'Quicksand', sans-serif;
-    letter-spacing: 0.5px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.3px;
 }
 
 #cart-btn:hover {
@@ -923,8 +923,8 @@ footer {
 #cart-btn .cart-count {
     color: #FFD600;
     font-size: 1.05em;
-    font-weight: 500;
-    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* ── Demo Notice ── */
