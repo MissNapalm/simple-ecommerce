@@ -503,11 +503,8 @@ body {
 main {
     flex: 1;
     padding: 40px 30px;
-    max-width: 1200px;
-    margin: 0 auto;
     width: 100%;
     background-color: #f0f9e8;
-    border-radius: 12px;
 }
 
 #products-heading {
@@ -516,12 +513,17 @@ main {
     margin-bottom: 24px;
     color: #111;
     letter-spacing: -0.3px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .product {
