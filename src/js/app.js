@@ -252,10 +252,18 @@ function setupHeroCarousel() {
     function swapVideo(src) {
         video.style.opacity = '0';
         setTimeout(() => {
+            video.preload = 'auto';
             video.src = src;
             video.load();
-            video.addEventListener('loadeddata', function onLoaded() {
-                video.removeEventListener('loadeddata', onLoaded);
+            
+            var timeout = setTimeout(() => {
+                // If video takes too long, just show it anyway
+                video.style.opacity = '1';
+            }, 3000);
+            
+            video.addEventListener('canplay', function onCanPlay() {
+                video.removeEventListener('canplay', onCanPlay);
+                clearTimeout(timeout);
                 video.play().catch(() => {});
                 video.style.opacity = '1';
             });
@@ -339,6 +347,12 @@ function setupHeroCarousel() {
             goToSlide(i);
         });
     });
+
+    // Load first video
+    var firstSlide = heroSlides[0];
+    video.src = firstSlide.videos[0];
+    video.load();
+    video.play().catch(() => {});
 
     startVideoSwap();
 }
