@@ -109,6 +109,25 @@ function loadProducts() {
         .catch(error => console.error('Error loading products:', error));
 }
 
+function generateStars(rating) {
+    var stars = '';
+    var fullStars = Math.floor(rating);
+    var halfStar = rating % 1 >= 0.25;
+    var emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+    for (var i = 0; i < fullStars; i++) {
+        stars += '<span class="star full">★</span>';
+    }
+    if (halfStar) {
+        stars += '<span class="star half">★</span>';
+    }
+    for (var i = 0; i < emptyStars; i++) {
+        stars += '<span class="star empty">★</span>';
+    }
+
+    return stars;
+}
+
 function displayProducts(products) {
     const productContainer = document.getElementById('product-list');
     if (!productContainer) return;
@@ -116,14 +135,21 @@ function displayProducts(products) {
     productContainer.innerHTML = '';
 
     products.forEach(product => {
+        const rating = product.rating || 4.0;
+        const reviews = product.reviews || 0;
+
         const productElement = document.createElement('div');
         productElement.classList.add('product');
         productElement.innerHTML = `
             ${product.image
                 ? `<img class="product-image" src="${product.image}" alt="${product.name}">`
-                : `<div class="product-emoji">${product.emoji}</div>`
+                : `<div class="product-emoji">${product.emoji || '📦'}</div>`
             }
             <h3>${product.name}</h3>
+            <div class="product-rating">
+                <div class="stars">${generateStars(rating)}</div>
+                <span class="review-count">${reviews.toLocaleString()}</span>
+            </div>
             <p>$${product.price.toFixed(2)}</p>
             <button data-id="${product.id}">Add to Cart</button>
         `;
