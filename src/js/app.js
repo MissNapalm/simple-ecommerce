@@ -137,25 +137,23 @@ function displayProducts(products) {
     products.forEach(product => {
         const rating = product.rating || 4.0;
         const reviews = product.reviews || 0;
+        const description = product.description || '';
 
         const productElement = document.createElement('div');
         productElement.classList.add('product');
         productElement.innerHTML = `
-            ${product.image
-                ? `<img class="product-image" src="${product.image}" alt="${product.name}">`
-                : `<div class="product-emoji">${product.emoji || '📦'}</div>`
-            }
-            <h3>${product.name}</h3>
-            <div class="product-rating">
-                <div class="stars">${generateStars(rating)}</div>
-                <span class="review-count">${reviews.toLocaleString()}</span>
+            ${product.badge ? `<span class="product-badge ${product.badge === 'Sale' ? 'badge-sale' : product.badge === 'New' ? 'badge-new' : 'badge-default'}">${product.badge}</span>` : ''}
+            <div class="product-media">
+                ${product.image
+                    ? `<img class="product-image" src="${product.image}" alt="${product.name}">`
+                    : `<div class="product-emoji">${product.emoji || '📦'}</div>`
+                }
             </div>
-            <p>$${product.price.toFixed(2)}</p>
-            <button data-id="${product.id}">Add to Cart</button>
+            <div class="product-info">
+                <span class="current-price">$${product.price.toFixed(2)}</span>
+                ${description ? `<p class="product-desc">${description}</p>` : ''}
+            </div>
         `;
-
-        const btn = productElement.querySelector('button');
-        btn.addEventListener('click', () => addToCart(product.id));
 
         productContainer.appendChild(productElement);
     });
