@@ -150,8 +150,17 @@ function displayProducts(products) {
                 }
             </div>
             <div class="product-info">
+                <h3>${product.name}</h3>
+                <div class="product-rating">
+                    <span class="stars">${generateStars(rating)}</span>
+                    <span class="review-count">(${reviews.toLocaleString()})</span>
+                </div>
                 <span class="current-price">$${product.price.toFixed(2)}</span>
+                ${product.oldPrice ? `<span class="old-price">$${product.oldPrice.toFixed(2)}</span>` : ''}
+                ${product.discount ? `<span class="discount-tag">${product.discount}</span>` : ''}
                 ${description ? `<p class="product-desc">${description}</p>` : ''}
+                ${product.shipping ? `<p class="product-shipping">${product.shipping}</p>` : ''}
+                <button data-id="${product.id}" onclick="addToCart(${product.id})">Add to Cart</button>
             </div>
         `;
 
