@@ -620,19 +620,20 @@ main {
 }
 
 .product-media {
-    position: relative;
     width: 100%;
+    height: 200px;
     overflow: hidden;
-    background: #111;
-    border-bottom: 1px solid #1a1a2e;
+    background: #0a0a0a;
+    flex-shrink: 0;
 }
 
 .product-image {
     width: 100%;
-    height: 240px;
+    height: 100%;
     object-fit: contain;
-    padding: 16px;
-    background: #111;
+    object-position: center;
+    padding: 10px;
+    background: #0a0a0a;
     transition: transform 0.3s ease;
 }
 
@@ -1490,9 +1491,10 @@ footer {
 }
 
 .product-media {
-    position: relative;
     width: 100%;
+    height: 200px;
     overflow: hidden;
+    background: #0a0a0a;
 }
 
 .desc-btn {
